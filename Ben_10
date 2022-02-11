@@ -39,12 +39,12 @@ public class Game {
         
         pWeapon = "OmniGlasses";
         
-        System.out.print("Hello new player! What is your name? ");
+        System.out.println("Hello new player! What is your name? ");
         pName = kb.next();
         
         System.out.println("Hello! " + pName);
         
-        System.out.print(" Press 1 to pick up object on ground.");
+        System.out.println(" Press 1 to pick up object on ground.");
         
         choice = kb.nextInt();
         do{if(choice == 1){
