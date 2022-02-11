@@ -88,7 +88,8 @@ public class Game {
                     break;
             }
            }else if(choice == 2){
-               healHP(pHP,healHP);
+               int heal = healHP(pHP, healHP);
+               System.out.print(heal);
            }
     }
     public void Start(){
@@ -110,7 +111,7 @@ public class Game {
         for(int i = healHP; i<h;i++){
             pHP++;
         }
-        return pHP;
+        return (pHP);
     }
     public int fight(int a, int v, int p){
         this.select = a;
