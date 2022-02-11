@@ -16,6 +16,10 @@ public class Game {
     Scanner kb = new Scanner(System.in);
     Random r = new Random();
     
+    /*
+    declaring variables
+    */
+    
     String[] hero = {"Four Arms", "Wildvine", "Diamondhead", "Ditto"};
    String[] villian = {"Bob", "Sam"};
     
@@ -28,6 +32,10 @@ public class Game {
     
     public void pSetUp(){
         
+        /*
+        This is where the story line will come in to play. setting up the story
+        and setting up the character. Have user press 1 to pick up Omnitrix.
+        */
         
         pWeapon = "OmniGlasses";
         
@@ -55,9 +63,16 @@ public class Game {
     
     public void Game(){
         
+        /*
+        The fight takes place
+        */
         
         System.out.println("First villian approaches");
         
+        /*
+        Below is the menu the use should choose from
+        */
+                
         System.out.println("-----------------------------");
         System.out.println("1. Transform and attack.");
         System.out.println("2. Eat health potion.");
@@ -70,6 +85,7 @@ public class Game {
                     + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
         select = kb.nextInt();
         System.out.println("Transforming into . . .");
+        //Player transforms into Omni characters 
             switch  (select) {
                 case 1:
                     fight(select, v1HP, pHP);
@@ -87,23 +103,32 @@ public class Game {
                     System.out.println("Press 1-4");
                     break;
             }
-           }else if(choice == 2){
+           }//Player should be able the recover the health to 100
+        else if(choice == 2){
                int heal = healHP(pHP, healHP);
                System.out.print(heal);
            }
+        else if(choice == 3){
+            //player should be able  run away, however, return to battle. If player
+            //runs away 3 times. Game Over
+        }
     }
+    //Starts the Game
     public void Start(){
         Game();
     }
     
+    //Maybe used. Suppose to be attack damage
     public int contDamage(int a, int b){
         return b-=a; 
     }
     
+    //generate a random number between a range
     public int getRandomNumber(int min, int max) {
         
         return r.nextInt(max - min) + min;
 }
+    //Attempting to heal player to 100
     public int healHP(int h, int hp){
         this.healHP = hp;
         this.pHP = h;
@@ -113,6 +138,8 @@ public class Game {
         }
         return (pHP);
     }
+    
+    //When player is in the action of fighting after choosing their character
     public int fight(int a, int v, int p){
         this.select = a;
         this.v1HP = v;
@@ -146,6 +173,8 @@ public class Game {
              return pHP;                  
     
     }
+    
+    //Takes variable and track damge and health from both hero and villian
     public void attack(int a, int b){
         this.pHP = b;
         this.v1HP = a;
@@ -179,10 +208,12 @@ public class Game {
                    
         }
       
+    //If player dies then Game Over.
     public void dead(){
         System.out.print("Died");
     }
-            
+           // declares the next villian to attack
+    //Once he is defeated, User save grandpa and gwen
         public void villianTwo(){
             System.out.println("\nYou have defeated " + villian[0] + "!");
             
@@ -235,8 +266,8 @@ public class Game {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = new Game();
-        //game.pSetUp();
-        game.Start();
+        //game.pSetUp(); //Declares the users and displays setting and storyline
+        game.Start(); //Starts the game
     }
     
 }
