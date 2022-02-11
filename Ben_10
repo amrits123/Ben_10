@@ -19,12 +19,15 @@ public class Game {
     String[] hero = {"Four Arms", "Wildvine", "Diamondhead", "Ditto"};
    String[] villian = {"Bob", "Sam"};
     
-    int pHP, choice, select, v1HP, v2HP, attack;
+    int  choice, select, v2HP, attack, vattack, pDamage;
     String pName, vName[], charName, pWeapon;
     boolean tof = false;
+    int v1HP=100;
+    int pHP = 100;
+    
     
     public void pSetUp(){
-        pHP = 100;
+        
         
         pWeapon = "OmniGlasses";
         
@@ -51,7 +54,7 @@ public class Game {
     }
     
     public void Game(){
-        v1HP = 100;
+        
         
         System.out.println("First villian approaches");
         
@@ -62,39 +65,135 @@ public class Game {
         System.out.println("-----------------------------");
         choice = kb.nextInt();
         
-        
-        while(tof = true){
-           if(choice == 1){
-            System.out.print("What character do you want to transform in to? \n" 
+        System.out.print("What character do you want to transform in to? \n" 
                     + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
         select = kb.nextInt();
         
-        for(int i = 0; i<100; i++){
-            
-        }
-        if(select == 1){
-            System.out.println("Transforming into " + hero[0] +". . .");
-            attack = getRandomNumber(60,70);
-            v1HP = v1HP - attack;
-            System.out.println("You dealt " + attack + "damage. " + villian[0] + " has "+ 
-                    v1HP + "HP left.");
+        System.out.println("Transforming into . . .");
+        
+           if(choice == 1){
+            fight(select, v1HP, pHP);
            }else if(select == 2){
-               System.out.println("Transforming into " + hero[1] +". . .");
-            attack = getRandomNumber(40,50);
-            v1HP = v1HP - attack;
-            System.out.println("You dealt " + attack + "damage. " + villian[0] + " has "+ 
-                    v1HP + "HP left.");
+              fight(select, v1HP, pHP);
+           }else if(select == 3){
+               fight(select, v1HP, pHP);
+           }else if(select == 4){
+               fight(select, v1HP, pHP);
            }else{
                System.out.println("Press 1-4");
            }
         
-           }
+           
            
 }
+    
+    
+    public void Start(){
+        Game();
     }
+    
+    public int contDamage(int a, int b){
+        return b-=a; 
+    }
+    
     public int getRandomNumber(int min, int max) {
-    return (int) ((Math.random() * (max - min)) + min);
+        
+    int rand = r.nextInt((max - min) + min);
+        
+        return rand;
 }
+    public void fight(int a, int v, int p){
+        this.select = a;
+        this.v1HP = v;
+        this.pHP = p;
+        
+        //for(int i=attack; i < v1HP;i++){
+        //  for(int j = vattack; j < pHP; j++){
+        switch (a) {
+            case 1 -> {
+                System.out.println(hero[a - 1]);
+                attack(v,p);
+            }
+            case 2 -> {
+                System.out.println(hero[a - 1]);
+                attack(v,p);
+            }
+            case 3 -> {
+                System.out.println(hero[a - 1]);
+                attack(v,p);
+            }
+            case 4 -> {
+                System.out.println(hero[a - 1]);
+                attack(v,p);
+            }
+            default -> {
+                System.out.println("Try again");
+                fight(select, v1HP, pHP);
+            }
+        }
+            
+                
+                               
+    
+    }
+    public void attack(int a, int b){
+        attack = getRandomNumber(20,80);
+        vattack = getRandomNumber(30,40);
+        this.pHP = b;
+        this.v1HP = a;
+        
+        do{
+        
+            if(a>0){
+            a= a - attack;
+            System.out.println("You dealt " + attack + " damage."
+                    + " Villian now has " + a);//when v1HP = 0. Program stops
+            }else{ dead();
+               tof=true;}
+            
+           if(b>0){
+            b = b - vattack;
+               System.out.println("It is " + villian[0] + " turn to attack!");
+           System.out.println(villian[0] + " has dealt " + vattack+ "You now have " + b + "HP");
+           }else{
+               win1();
+               tof = true;}
+        
+          
+           
+            }while(tof == false);
+            
+          
+        
+        }
+        
+       
+        
+           
+            
+//           System.out.print("Press 1 to attack again.");
+//           select = kb.nextInt();
+//           while(tof == true){
+//               if(select == 1)
+//                   tof = false;
+//              else 
+//                  System.out.print("Press 1 to attack again.");   
+//           }
+               
+            
+      
+    
+
+    public void dead(){
+        System.out.print("Died");
+    }
+            
+        public void win1(){
+            System.out.println("Win");
+        }
+        
+    
+    
 
     /**
      * @param args the command line arguments
@@ -102,8 +201,8 @@ public class Game {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = new Game();
-        game.pSetUp();
-        game.Game();
+        //game.pSetUp();
+        game.Start();
     }
     
 }
