@@ -21,9 +21,9 @@ public class Game {
     */
     
     String[] hero = {"Four Arms", "Wildvine", "Diamondhead", "Ditto"};
-   String[] villian = {"Vilgax", "Eon"};
+   String[] villian = {"Bob", "Sam"};
     
-    int  choice, select, v2HP, attack, vattack, pDamage, healHP,maxHP;
+    int  choice, select, v2HP, attack, vattack, pDamage, healHP;
     String pName, vName[], charName, pWeapon;
     boolean tof = false;
     int v1HP=100;
@@ -31,33 +31,40 @@ public class Game {
     
     
     public void pSetUp(){
-        
+         System.out.println("You are on a road-trip with Grandpa Max and Gwen! Grandpa Max decides to stop near Mount Rushmore for the night.");
+         System.out.println("You make the decision to sneak off while Grandpa Max and Gwen go to sleep. While walking you discover a cave and decide to explore.");
+         System.out.println("As you go deeper into the cave, you notice two aliens in hiding! The aliens attack you but while fighting,");
+         System.out.println("the aliens run out of the cave and you lose sight of them. As you walk back to the van you discover Gwen and Grandpa Max have been kidnapped by the aliens!");
+         System.out.println("In the distance you notice something glistening on the ground. When you reach the object, you discover that it is a watch called the Omniglasses!");
+         System.out.println("The Omniglasses lets you transform into 4 different types of aliens. After testing out the watch, you accidentally found the aliens' hideout! ");
+         System.out.println("Using the Omnitirix fight the two aliens in two rounds in order to save Grandpa Max and Gwen from the aliens!");
+
         /*
         This is where the story line will come in to play. setting up the story
         and setting up the character. Have user press 1 to pick up Omnitrix.
         */
         
-        pWeapon = "Omnitrix";
+        pWeapon = "OmniGlasses";
         
         System.out.println("Hello new player! What is your name? ");
         pName = kb.next();
         
         System.out.println("Hello! " + pName);
         
-        System.out.println("Press 1 to pick up " + pWeapon + " on the ground.");
+        System.out.println(" Press 1 to pick up object on ground.");
         
         choice = kb.nextInt();
         do{if(choice == 1){
             
-            System.out.println(pName + "picked up the "+ pWeapon);
+            System.out.println("Discovered "+ pWeapon);
             tof = true;
         }else{
         System.out.println("Press 1 to continue!");
         choice = kb.nextInt();
     }
-        }while(tof = false);
+        }while(tof == false);
         
-        System.out.println(pName + ":With these new powers I can save Grandpa Max and Gwen!");
+        System.out.println("Off to go find Grandpa Max and Gwen!");
         
     }
     
@@ -67,171 +74,80 @@ public class Game {
         The fight takes place
         */
         
-        System.out.println(villian[0] + " approaches you.\n" + villian[0] + 
-                ": 'You have found the cave! Let me show you the way out.'"  );
+        System.out.println("First villian approaches");
         
         /*
         Below is the menu the use should choose from
         */
-        Menu();
-        
-        villianTwo();
                 
-        Menu2();
+        System.out.println("-----------------------------");
+        System.out.println("1. Transform and attack.");
+        System.out.println("2. Eat health potion.");
+        System.out.println("3. Run away!");
+        System.out.println("-----------------------------");
+        choice = kb.nextInt();
         
-        System.out.println("Eon: ARGGH! You killed my brother and me! " + pName + 
-                ", you are a worthy opponent.");
-        
-        Congrats();
-            
-        
-        
+        if(choice == 1){
+            System.out.print("What character do you want to transform in to? \n" 
+                    + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
+        select = kb.nextInt();
+        System.out.println("Transforming into . . .");
+        //Player transforms into Omni characters 
+            switch  (select) {
+                case 1:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 2:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 3:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 4: 
+                    fight(select, v1HP, pHP);
+                    break;
+                default:
+                    System.out.println("Press 1-4");
+                    break;
+            }
+           }//Player should be able the recover the health to 100
+        else if(choice == 2){
+               int heal = healHP(pHP, healHP);
+               System.out.print(heal);
+           }
+        else if(choice == 3){
+            //player should be able  run away, however, return to battle. If player
+            //runs away 3 times. Game Over
         }
-        
-
-    
+    }
     //Starts the Game
     public void Start(){
-        pSetUp();
         Game();
     }
     
-    public void Menu2(){
-        System.out.println("-----------------------------");
-        System.out.println("1. Transform and attack.");
-        System.out.println("2. Eat health potion.");
-        System.out.println("3. Surrender.");
-        System.out.println("-----------------------------");
-        choice = kb.nextInt();
-        
-        switch (choice) {
-            case 1 -> {
-                System.out.println("What character do you want to transform in to? \n"
-                        + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
-                select = kb.nextInt();
-                System.out.println("Transforming into . . .");
-                //Player transforms into Omni characters
-                switch  (select) {
-                    case 1 -> fight2(select, v1HP, pHP);
-                    case 2 -> fight2(select, v1HP, pHP);
-                    case 3 -> fight2(select, v1HP, pHP);
-                    case 4 -> fight2(select, v1HP, pHP);
-                    default -> System.out.println("Press 1-4");
-                }
-            }
-
-            case 2 -> {
-                healHP(maxHP);
-                Menu2();
-            }
-            case 3 -> {
-                //player should be able  run away, however, return to battle. If player
-                //runs away 3 times. Game Over
-                System.out.println("Are you sure you want to surrender?");
-                String YoN = kb.next();
-                if(null == YoN){
-                    System.out.println("Yes or no.");
-                    Menu2();
-                    
-                }else switch (YoN) {
-                    case "yes":
-                    case "y":
-                    case "Yes":
-                        System.out.println("Game Over. You lose!");
-                        System.exit(0);
-                    case "no":
-                    case "n":
-                    case "No":
-                        Menu2();
-                        break;
-                    default:
-                        System.out.println("Yes or no.");
-                        Menu2();
-                        break;
-                }
-            }
-
-        
+    //Maybe used. Suppose to be attack damage
+    public int contDamage(int a, int b){
+        return b-=a; 
     }
-        //Player should be able the recover the health to 100
-                //Player should be able the recover the health to 100
-    }
-   
-    public void Menu(){
-        
-        System.out.println("-----------------------------");
-        System.out.println("1. Transform and attack.");
-        System.out.println("2. Eat health potion.");
-        System.out.println("3. Surrender.");
-        System.out.println("-----------------------------");
-        choice = kb.nextInt();
-        
-        switch (choice) {
-            case 1 -> {
-                System.out.print("What character do you want to transform in to? \n"
-                        + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
-                select = kb.nextInt();
-                System.out.println("Transforming into . . .");
-                //Player transforms into Omni characters
-                switch  (select) {
-                    case 1 -> fight(select, v1HP, pHP);
-                    case 2 -> fight(select, v1HP, pHP);
-                    case 3 -> fight(select, v1HP, pHP);
-                    case 4 -> fight(select, v1HP, pHP);
-                    default -> System.out.println("Press 1-4");
-                }
-            }
-
-            case 2 -> {
-                healHP(maxHP);
-                Menu();
-            }
-            case 3 -> {
-                //player should be able  run away, however, return to battle. If player
-                //runs away 3 times. Game Over
-                System.out.println("Are you sure you want to surrender?");
-                String YoN = kb.next();
-                if(null == YoN){
-                    System.out.println("Yes or no.");
-                    Menu();
-                    
-                }else switch (YoN) {
-                    case "yes":
-                    case "y":
-                    case "Yes":
-                        System.out.println("Game Over. You lose!");
-                        System.exit(0);
-                    case "no":
-                    case "n":
-                    case "No":
-                        Menu();
-                        break;
-                    default:
-                        System.out.println("Yes or no.");
-                        Menu();
-                        break;
-                }
-            }
-
-        
-    }
-        //Player should be able the recover the health to 100
-            }
+    
     //generate a random number between a range
     public int getRandomNumber(int min, int max) {
         
         return r.nextInt(max - min) + min;
 }
     //Attempting to heal player to 100
-    public void healHP(int hp){
-        hp = pHP;
-        this.maxHP = hp;
-       
-        System.out.println("You now have " + hp + "HP");
+    public int healHP(int h, int hp){
+        this.healHP = hp;
+        this.pHP = h;
+        
+        for(int i = healHP; i<h;i++){
+            pHP++;
+        }
+        return (pHP);
     }
     
     //When player is in the action of fighting after choosing their character
-    public void fight(int a, int v, int p){
+    public int fight(int a, int v, int p){
         this.select = a;
         this.v1HP = v;
         this.pHP = p;
@@ -257,45 +173,11 @@ public class Game {
             }
             default -> {
                 System.out.println("Try again");
-                fight(a, v, p);
+                fight(select, v1HP, pHP);
             }
         }
               
-                           
-    
-    }
-    
-    public void fight2(int a,int v, int p){
-        this.select = a;
-        this.v2HP = v;
-        this.pHP = p;
-        
-        //for(int i=attack; i < v1HP;i++){
-        //  for(int j = vattack; j < pHP; j++){
-        switch (a) {
-            case 1 -> {
-                System.out.println(hero[a - 1]);
-                attack2(v,p);
-            }
-            case 2 -> {
-                System.out.println(hero[a - 1]);
-                attack2(v,p);
-            }
-            case 3 -> {
-                System.out.println(hero[a - 1]);
-                attack2(v,p);
-            }
-            case 4 -> {
-                System.out.println(hero[a - 1]);
-                attack2(v,p);
-            }
-            default -> {
-                System.out.println("Try again");
-                fight2(a, v, p);
-            }
-        }
-              
-                           
+             return pHP;                  
     
     }
     
@@ -303,7 +185,6 @@ public class Game {
     public void attack(int a, int b){
         this.pHP = b;
         this.v1HP = a;
-        this.v2HP = a;
         
         do{
         attack = getRandomNumber(30,80);
@@ -311,19 +192,20 @@ public class Game {
             if(b>0){
             a= a - attack;
             System.out.println("You dealt " + attack + " damage."
-                    + " Villian now has " + a + "HP.");//when v1HP = 0. Program stops
+                    + " Villian now has " + a);//when v1HP = 0. Program stops
             
-            }else if(b <= 0)
+            }else if(b < 0)
             { dead();
                tof=true;}else{
-                System.out.println("Error");
+                System.out.println("error");
             }
             
            if(a>0){
             b = b - vattack;
                System.out.println("It is " + villian[0] + " turn to attack!");
-           System.out.println(villian[0] + " has dealt " + vattack+ " damage. You now have " + b + "HP");
-           }else if (a <= 0){
+           System.out.println(villian[0] + " has dealt " + vattack+ "You now have " + b + "HP");
+           }else if (a < 0){
+               villianTwo();
                tof = true;}
            else{
                System.out.println("Error");
@@ -333,56 +215,58 @@ public class Game {
                    
         }
       
-    public void attack2(int a, int b){
-        this.pHP = b;
-        this.v1HP = a;
-        this.v2HP = a;
-        
-        do{
-        attack = getRandomNumber(30,80);
-        vattack = getRandomNumber(30,40);
-            if(b>0){
-            a= a - attack;
-            System.out.println("You dealt " + attack + " damage."
-                    + " Villian now has " + a + "HP.");//when v1HP = 0. Program stops
-            
-            }else if(b <= 0)
-            { dead();
-               tof=true;}else{
-                System.out.println("Error");
-            }
-            
-           if(a>0){
-            b = b - vattack;
-               System.out.println("It is " + villian[0] + " turn to attack!");
-           System.out.println(villian[0] + " has dealt " + vattack+ " damage. You now have " + b + "HP");
-           }else if (a <= 0){
-               tof = true;}
-           else{
-               System.out.println("Error");
-           }
-        
-            }while(tof == false);
-                   
-        }
-    
     //If player dies then Game Over.
     public void dead(){
         System.out.print("Died");
-        System.exit(0);
     }
            // declares the next villian to attack
     //Once he is defeated, User save grandpa and gwen
-    public void villianTwo(){
+        public void villianTwo(){
             System.out.println("\nYou have defeated " + villian[0] + "!");
             
             System.out.println("Villian, " + villian[1] + " approaches!");
-            System.out.println(villian[1] + ": No! You killed my brother! Now I will kill you!");
-    }
-    public void Congrats(){
-            System.out.println("You have saved Grandpa and Gwen! Congrarts");
+            System.out.println("No! You killed my brother! Now I will kill you!");
+            
+        System.out.println("-----------------------------");
+        System.out.println("1. Transform and attack.");
+        System.out.println("2. Eat health potion.");
+        System.out.println("3. Run away!");
+        System.out.println("-----------------------------");
+        choice = kb.nextInt();
+        
+        System.out.print("What character do you want to transform in to? \n" 
+                    + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
+        select = kb.nextInt();
+        
+        System.out.println("Transforming into . . .");
+        
+        if(choice == 1){
+            switch  (select) {
+                case 1:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 2:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 3:
+                    fight(select, v1HP, pHP);
+                    break;
+                case 4: 
+                    fight(select, v1HP, pHP);
+                    break;
+                default:
+                    System.out.println("Press 1-4");
+                    break;
+            }
+           }else if(choice == 2){
+               healHP(pHP,healHP);
+           }
+            
         }
-      
+        
+    
+    
+
     /**
      * @param args the command line arguments
      */
