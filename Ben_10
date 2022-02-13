@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author dalio
+ * @author Dallion Whitley
  */
 public class Game {
     
@@ -31,25 +31,43 @@ public class Game {
     
     
     public void pSetUp(){
-        
+        pWeapon = "Omnitrix";
         /*
         This is where the story line will come in to play. setting up the story
         and setting up the character. Have user press 1 to pick up Omnitrix.
         */
         
-        pWeapon = "Omnitrix";
-        
-        System.out.println("Hello new player! What is your name? ");
+        /*Storyline done:
+        @Amrits
+        @Dallion
+        */
+                
+         System.out.println("You are on a road-trip with Grandpa Max and Gwen! "
+                 + " Grandpa Max decides to stop near Mount Rushmore for the night.");
+         System.out.println("You make the decision to sneak off while " 
+                 + " Grandpa Max and Gwen go to sleep. While walking you " 
+                 + " discover a cave and decide to explore.");
+         System.out.println("As you go deeper into the cave, you notice two " 
+                 + " aliens in hiding! The aliens attack you but while fighting,");
+         System.out.println("the aliens run out of the cave and you lose sight " 
+                 + " of them. As you walk back to the van you discover Gwen " 
+                 + "and Grandpa Max have been kidnapped by the aliens!");
+         System.out.println("In the distance you notice something glistening " 
+                 + " on the ground. When you reach the object, you discover " 
+                 + " that it is a watch called the Omniglasses!");
+         System.out.println("The Omnitrix lets you transform into 4 different " 
+                 + " types of aliens. After testing out the watch, you " 
+                 + " accidentally found the aliens' hideout! ");
+         System.out.println("Using the Omnitirix fight the two aliens in two " 
+                 + " rounds in order to save Grandpa Max and Gwen from the aliens!");
+         System.out.println("Press 1 to pick up " + pWeapon + " on the ground.");
+         choice = kb.nextInt();
+         System.out.println("In order for the Omnitrix to work, please tell the Omnitrix your name: ");
         pName = kb.next();
         
-        System.out.println("Hello! " + pName);
-        
-        System.out.println("Press 1 to pick up " + pWeapon + " on the ground.");
-        
-        choice = kb.nextInt();
         do{if(choice == 1){
             
-            System.out.println(pName + "picked up the "+ pWeapon);
+            System.out.println(pName + " picked up the "+ pWeapon);
             tof = true;
         }else{
         System.out.println("Press 1 to continue!");
@@ -57,7 +75,7 @@ public class Game {
     }
         }while(tof = false);
         
-        System.out.println(pName + ":With these new powers I can save Grandpa Max and Gwen!");
+        System.out.println("\n" + pName + ": 'With these new powers I can save Grandpa Max and Gwen!'\n");
         
     }
     
@@ -66,30 +84,27 @@ public class Game {
         /*
         The fight takes place
         */
-        
-        System.out.println(villian[0] + " approaches you.\n" + villian[0] + 
-                ": 'You have found the cave! Let me show you the way out.'"  );
+        System.out.println("As " + pName + " looks for thier family, " + pName + " stumbles upon "
+                + "a lair. Two aliens rush out.\n" + villian[0] + "'I, " + villian[0] + 
+                ", and my brother " + villian[1] + " are not giving them back!'");
+        System.out.println(villian[0] + " lunges towards you.");
         
         /*
-        Below is the menu the use should choose from
+        Below is the menu the user should choose from
         */
         Menu();
-        
+        //Second battle Eon
         villianTwo();
                 
         Menu2();
         
-        System.out.println("Eon: ARGGH! You killed my brother and me! " + pName + 
-                ", you are a worthy opponent.");
+        System.out.println("Eon: 'ARGGH! You killed my brother and me! " + pName + 
+                ", you are a worthy opponent'.");
         
         Congrats();
-            
-        
-        
+   
         }
         
-
-    
     //Starts the Game
     public void Start(){
         pSetUp();
@@ -106,8 +121,8 @@ public class Game {
         
         switch (choice) {
             case 1 -> {
-                System.out.println("What character do you want to transform in to? \n"
-                        + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
+                System.out.println("What character do you want to transform in to?\nPress 1-4 to select one character."
+                        + Arrays.toString(hero));
                 select = kb.nextInt();
                 System.out.println("Transforming into . . .");
                 //Player transforms into Omni characters
@@ -149,9 +164,7 @@ public class Game {
                         Menu2();
                         break;
                 }
-            }
-
-        
+            }        
     }
         //Player should be able the recover the health to 100
                 //Player should be able the recover the health to 100
@@ -168,18 +181,19 @@ public class Game {
         
         switch (choice) {
             case 1 -> {
-                System.out.print("What character do you want to transform in to? \n"
-                        + Arrays.toString(hero) + "\nPress 1-4 to select one character.");
+                System.out.println("What character do you want to transform in to? \n"
+                        + Arrays.toString(hero) + "\n Press 1-4 to select one character.");
                 select = kb.nextInt();
                 System.out.println("Transforming into . . .");
                 //Player transforms into Omni characters
-                switch  (select) {
+                
+                do{switch (select) {
                     case 1 -> fight(select, v1HP, pHP);
                     case 2 -> fight(select, v1HP, pHP);
                     case 3 -> fight(select, v1HP, pHP);
                     case 4 -> fight(select, v1HP, pHP);
                     default -> System.out.println("Press 1-4");
-                }
+                }}while (tof == true);
             }
 
             case 2 -> {
@@ -199,7 +213,8 @@ public class Game {
                     case "yes":
                     case "y":
                     case "Yes":
-                        System.out.println("Game Over. You lose!");
+                        System.out.println("Game Over. " + villian[0] + " and " 
+                                + " kidnapped your family.");
                         System.exit(0);
                     case "no":
                     case "n":
@@ -212,16 +227,16 @@ public class Game {
                         break;
                 }
             }
-
-        
     }
         //Player should be able the recover the health to 100
             }
+    
     //generate a random number between a range
     public int getRandomNumber(int min, int max) {
         
         return r.nextInt(max - min) + min;
 }
+    
     //Attempting to heal player to 100
     public void healHP(int hp){
         hp = pHP;
@@ -259,9 +274,7 @@ public class Game {
                 System.out.println("Try again");
                 fight(a, v, p);
             }
-        }
-              
-                           
+        }  
     
     }
     
@@ -294,9 +307,6 @@ public class Game {
                 fight2(a, v, p);
             }
         }
-              
-                           
-    
     }
     
     //Takes variable and track damge and health from both hero and villian
@@ -304,9 +314,10 @@ public class Game {
         this.pHP = b;
         this.v1HP = a;
         this.v2HP = a;
+        int input;
         
         do{
-        attack = getRandomNumber(30,80);
+        attack = getRandomNumber(30,60);
         vattack = getRandomNumber(30,40);
             if(b>0){
             a= a - attack;
@@ -323,15 +334,36 @@ public class Game {
             b = b - vattack;
                System.out.println("It is " + villian[0] + " turn to attack!");
            System.out.println(villian[0] + " has dealt " + vattack+ " damage. You now have " + b + "HP");
+           System.out.println("Press 1 to attack again.");
+           input = kb.nextInt();
+           
+           press1(input);
+           
            }else if (a <= 0){
-               tof = true;}
+               tof = false;}
            else{
                System.out.println("Error");
            }
         
-            }while(tof == false);
+            }while(tof == true);
                    
         }
+    
+    public void press1(int press){
+        
+        do{
+               if(press == 1){
+               tof = true;
+               continue;
+               
+           }else{
+               System.out.println("Press 1.");
+               press = kb.nextInt();
+               press1(press);
+           }
+           
+           }while(tof == false);
+    }
       
     public void attack2(int a, int b){
         this.pHP = b;
@@ -339,8 +371,8 @@ public class Game {
         this.v2HP = a;
         
         do{
-        attack = getRandomNumber(30,80);
-        vattack = getRandomNumber(30,40);
+        attack = getRandomNumber(30,60);
+        vattack = getRandomNumber(30,50);
             if(b>0){
             a= a - attack;
             System.out.println("You dealt " + attack + " damage."
@@ -348,22 +380,26 @@ public class Game {
             
             }else if(b <= 0)
             { dead();
-               tof=true;}else{
+               tof=true;}
+            else{
                 System.out.println("Error");
             }
             
            if(a>0){
             b = b - vattack;
-               System.out.println("It is " + villian[0] + " turn to attack!");
-           System.out.println(villian[0] + " has dealt " + vattack+ " damage. You now have " + b + "HP");
+               System.out.println("It is " + villian[1] + " turn to attack!");
+           System.out.println(villian[1] + " has dealt " + vattack+ " damage. You now have " + b + "HP");
+           System.out.println("Press 1 to attack again.");
+           int input = kb.nextInt();
+           
+           press1(input);
+           
            }else if (a <= 0){
-               tof = true;}
+               tof = false;}
            else{
                System.out.println("Error");
            }
-        
-            }while(tof == false);
-                   
+            }while(tof == true);
         }
     
     //If player dies then Game Over.
@@ -371,6 +407,7 @@ public class Game {
         System.out.print("Died");
         System.exit(0);
     }
+    
            // declares the next villian to attack
     //Once he is defeated, User save grandpa and gwen
     public void villianTwo(){
@@ -379,8 +416,9 @@ public class Game {
             System.out.println("Villian, " + villian[1] + " approaches!");
             System.out.println(villian[1] + ": No! You killed my brother! Now I will kill you!");
     }
+    
     public void Congrats(){
-            System.out.println("You have saved Grandpa and Gwen! Congrarts");
+            System.out.println("You have saved Grandpa and Gwen! Congrarts!");
         }
       
     /**
@@ -389,7 +427,7 @@ public class Game {
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = new Game();
-        //game.pSetUp(); //Declares the users and displays setting and storyline
+        
         game.Start(); //Starts the game
     }
     
