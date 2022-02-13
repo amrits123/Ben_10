@@ -21,12 +21,12 @@ public class Game {
     */
     
     String[] hero = {"Four Arms", "Wildvine", "Diamondhead", "Ditto"};
-   String[] villian = {"Vilgax", "Eon"};
+    String[] villian = {"Vilgax", "Eon"};
     
     int  choice, select, v2HP, attack, vattack, pDamage, healHP,maxHP;
-    String pName, vName[], charName, pWeapon;
+    String pName, charName, pWeapon;
     boolean tof = false;
-    int v1HP=100;
+    int v1HP = 100;
     int pHP = 100;
     
     
@@ -54,7 +54,7 @@ public class Game {
                  + "and Grandpa Max have been kidnapped by the aliens!");
          System.out.println("In the distance you notice something glistening " 
                  + " on the ground. When you reach the object, you discover " 
-                 + " that it is a watch called the Omniglasses!");
+                 + " that it is a watch called the Omnitrix!");
          System.out.println("The Omnitrix lets you transform into 4 different " 
                  + " types of aliens. After testing out the watch, you " 
                  + " accidentally found the aliens' hideout! ");
@@ -152,7 +152,8 @@ public class Game {
                     case "yes":
                     case "y":
                     case "Yes":
-                        System.out.println("Game Over. You lose!");
+                        System.out.println("Game Over. " + villian[0] + " and " 
+                                + villian[1] + " kidnapped your family.");
                         System.exit(0);
                     case "no":
                     case "n":
@@ -214,7 +215,7 @@ public class Game {
                     case "y":
                     case "Yes":
                         System.out.println("Game Over. " + villian[0] + " and " 
-                                + " kidnapped your family.");
+                                + villian[1] + " kidnapped your family.");
                         System.exit(0);
                     case "no":
                     case "n":
@@ -230,20 +231,6 @@ public class Game {
     }
         //Player should be able the recover the health to 100
             }
-    
-    //generate a random number between a range
-    public int getRandomNumber(int min, int max) {
-        
-        return r.nextInt(max - min) + min;
-}
-    
-    //Attempting to heal player to 100
-    public void healHP(int hp){
-        hp = pHP;
-        this.maxHP = hp;
-       
-        System.out.println("You now have " + hp + "HP");
-    }
     
     //When player is in the action of fighting after choosing their character
     public void fight(int a, int v, int p){
@@ -344,26 +331,8 @@ public class Game {
            else{
                System.out.println("Error");
            }
-        
             }while(tof == true);
-                   
         }
-    
-    public void press1(int press){
-        
-        do{
-               if(press == 1){
-               tof = true;
-               continue;
-               
-           }else{
-               System.out.println("Press 1.");
-               press = kb.nextInt();
-               press1(press);
-           }
-           
-           }while(tof == false);
-    }
       
     public void attack2(int a, int b){
         this.pHP = b;
@@ -402,14 +371,7 @@ public class Game {
             }while(tof == true);
         }
     
-    //If player dies then Game Over.
-    public void dead(){
-        System.out.print("Died");
-        System.exit(0);
-    }
-    
-           // declares the next villian to attack
-    //Once he is defeated, User save grandpa and gwen
+    // declares the next villian to attack
     public void villianTwo(){
             System.out.println("\nYou have defeated " + villian[0] + "!");
             
@@ -417,17 +379,50 @@ public class Game {
             System.out.println(villian[1] + ": No! You killed my brother! Now I will kill you!");
     }
     
+    //generate a random number between a range
+    public int getRandomNumber(int min, int max) {
+        
+        return r.nextInt(max - min) + min;
+}
+
+    //Attempting to heal player to 100
+    public void healHP(int hp){
+        hp = pHP;
+        this.maxHP = hp;
+       
+        System.out.println("You now have " + hp + "HP");
+    }
+    
+    public void press1(int press){
+        
+        do{
+               if(press == 1){
+               tof = true;
+               continue;
+               
+           }else{
+               System.out.println("Press 1.");
+               press = kb.nextInt();
+               press1(press);
+           }
+           
+           }while(tof == false);
+    }
+    
+    //If player dies then Game Over.
+    public void dead(){
+        System.out.print("Died");
+        System.exit(0);
+    }
+    
+    //Once he is defeated, User save grandpa and gwen
     public void Congrats(){
             System.out.println("You have saved Grandpa and Gwen! Congrarts!");
         }
       
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // TODO code application logic here
         Game game = new Game();
-        
         game.Start(); //Starts the game
     }
     
