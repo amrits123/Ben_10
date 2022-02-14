@@ -85,7 +85,7 @@ public class Game {
         The fight takes place
         */
         System.out.println("As " + pName + " looks for thier family, " + pName + " stumbles upon "
-                + "a lair. Two aliens rush out.\n" + villian[0] + "'I, " + villian[0] + 
+                + "a lair. Two aliens rush out.\n" + "I, " + villian[0] + 
                 ", and my brother " + villian[1] + " are not giving them back!'");
         System.out.println(villian[0] + " lunges towards you.");
         
